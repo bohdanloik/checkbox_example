@@ -74,18 +74,11 @@ function App() {
         }
     }
 
-    // return (
-    //     <div className="App">
-    //         <Todolist title="What to learn"
-    //                   tasks={tasksForTodolist}
-    //                   removeTask={removeTask}
-    //                   changeFilter={changeFilter}
-    //                   addTask={addTask}
-    //                   changeStatus={changeStatus} 
-    //                   filter={filter}/>
-    //     </div>
-    // );
+    function removeTodolist(id: string) {
+        let updatedTodolists = todolists.filter((tl) => tl.id !== id);
+        setTodolists(updatedTodolists)
 
+    }
     return (
         <div className='App'>
             {
@@ -93,10 +86,9 @@ function App() {
                     let tasksForTodolist = tasks[tl.id];
 
                     if (tl.filter === "active") {
-                        // tasksForTodolist = tasks.filter(t => t.isDone === false);
-                    }
-                    if (tl.filter === "completed") {
-                        // tasksForTodolist = tasks.filter(t => t.isDone === true);
+                        tasksForTodolist = tasksForTodolist.filter(t => t.isDone === false);
+                    } else if (tl.filter === "completed") {
+                        tasksForTodolist = tasksForTodolist.filter(t => t.isDone === true);
                     }
 
                     return <Todolist
@@ -109,6 +101,7 @@ function App() {
                         addTask={addTask}
                         changeStatus={changeStatus} 
                         filter={tl.filter}
+                        removeTodolist={removeTodolist}
                     />
                 }) 
             }
