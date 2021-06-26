@@ -76,7 +76,7 @@ function App() {
 
     function removeTodolist(id: string) {
         let updatedTodolists = todolists.filter((tl) => tl.id !== id);
-        setTodolists(updatedTodolists)
+        setTodolists([])
 
     }
     return (
