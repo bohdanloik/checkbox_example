@@ -24,7 +24,7 @@ function App() {
         },
         {
             id: toDoListId2,
-            title: 'What to learn',
+            title: 'What to buy',
             filter: 'all'
         }
     ])
@@ -98,6 +98,13 @@ function App() {
             setTasks({...tasks});
         }
     }
+    function changeTodolistTitle (title: string, todolistId:string) {
+        let updatedTodolist = todolists.find(t => t.id === todolistId);
+        if(updatedTodolist) {
+            updatedTodolist.title = title;
+            setTodolists([...todolists])
+        }
+    }
     return (
         <div className='App'>
             <AddItemForm addItem={addTodolist}/>
@@ -123,6 +130,7 @@ function App() {
                         filter={tl.filter}
                         removeTodolist={removeTodolist}
                         changeTaskTitle={changeTaskTitle}
+                        changeTodolistTitle={changeTodolistTitle}
                     />
                 }) 
             }
